@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace DigiShop.Catalog.API.Models
+﻿namespace DigiShop.Catalog.API.Models
 {
     public partial class Review
     {

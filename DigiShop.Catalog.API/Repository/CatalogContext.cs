@@ -1,7 +1,5 @@
-﻿using System;
+﻿using DigiShop.Catalog.API.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
-using DigiShop.Catalog.API.Models;
 
 namespace DigiShop.Catalog.API.Repository
 {
@@ -114,10 +112,6 @@ namespace DigiShop.Catalog.API.Repository
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK__Review__ProductI__2D27B809");
             });
-
-            OnModelCreatingPartial(modelBuilder);
         }
-
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }

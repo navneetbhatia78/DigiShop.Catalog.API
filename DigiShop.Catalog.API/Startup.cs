@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
+using System;
 
 namespace DigiShop.Catalog.API
 {
@@ -25,7 +25,9 @@ namespace DigiShop.Catalog.API
             services.AddControllers();
             services.AddScoped<ICatalogService, CatalogService>();
             services.AddScoped<ICatalogRepository, CatalogRepository>();
-            services.AddDbContext<CatalogContext>(options=>options.UseSqlServer(Configuration.GetConnectionString("CatalogDbConnection")));
+            services.AddDbContext<CatalogContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CatalogDbConnection")));
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -34,8 +36,15 @@ namespace DigiShop.Catalog.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI();
             }
 
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+                options.RoutePrefix = string.Empty;
+            });
             app.UseHttpsRedirection();
 
             app.UseRouting();
