@@ -4,5 +4,6 @@
     {
         public const string BAD_REQUEST_400 = "Invalid Request";
         public const string INTERNAL_SERVER_ERROR_500 = "Unexpected Error";
+        public const string ERROR_404_DESC = "Not Found";
     }
 }

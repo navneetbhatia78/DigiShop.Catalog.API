@@ -38,6 +38,10 @@ namespace DigiShop.Catalog.API
                     d.CreatedUserId = 2;
                     d.CreatedDate = DateTime.Today.Date;
                 });
+
+            CreateMap<Brand, BrandDto>();
+            CreateMap<Product, ProductDetailDto>();
+            CreateMap<Category, CategoryDto>();
         }
     }
 }
