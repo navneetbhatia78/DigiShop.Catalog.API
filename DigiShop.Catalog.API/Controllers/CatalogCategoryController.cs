@@ -12,10 +12,12 @@ namespace DigiShop.Catalog.API.Controllers
     public class CatalogCategoryController : ControllerBase
     {
         private readonly ICatalogService _catalogService;
+        private readonly ICatalogLogic _catalogLogic;
 
-        public CatalogCategoryController(ICatalogService catalogService)
+        public CatalogCategoryController(ICatalogService catalogService,ICatalogLogic catalogLogic)
         {
             _catalogService = catalogService;
+            _catalogLogic = catalogLogic;
         }
 
         [Route("catalog/category"), HttpPost]

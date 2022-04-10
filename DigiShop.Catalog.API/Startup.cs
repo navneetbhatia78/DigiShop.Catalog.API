@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
 namespace DigiShop.Catalog.API
@@ -23,10 +24,14 @@ namespace DigiShop.Catalog.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddScoped<ICatalogService, CatalogService>();
             services.AddScoped<ICatalogRepository, CatalogRepository>();
             services.AddDbContext<CatalogContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CatalogDbConnection")));
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            services.AddScoped<ICatalogService>(x=>x.GetRequiredService<CatalogService>());
+            services.AddScoped<ICatalogLogic>(x=>x.GetRequiredService<CatalogService>());
+           
+
             services.AddSwaggerGen();
         }
 
