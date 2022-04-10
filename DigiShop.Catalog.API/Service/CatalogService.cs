@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DigiShop.Catalog.API.Service
 {
-    public class CatalogService : ICatalogService
+    public class CatalogService : ICatalogService,ICatalogLogic
     {
         private readonly ICatalogRepository _catalogRepository;
         private readonly IMapper _mapper;
